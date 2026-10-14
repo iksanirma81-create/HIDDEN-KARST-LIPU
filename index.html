@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GUA LAUMEHE — Digital Cave Experience</title>
+  <meta name="description" content="Jelajahi Gua Laumehe di Wantopi, Mawasangka Timur, Buton Tengah secara digital: storytelling, peta interaktif, dan pengalaman virtual.">
+  <meta name="theme-color" content="#000000">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===================== NAVBAR ===================== -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#beranda" class="logo" aria-label="GUA LAUMEHE, ke beranda">GUA LAUMEHE</a>
+    <button class="nav__toggle" id="navToggle" aria-label="Buka menu" aria-expanded="false" aria-controls="navMenu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav__menu" id="navMenu" aria-label="Navigasi utama">
+      <a href="#beranda" data-spy="beranda">Beranda</a>
+      <a href="#storytelling" data-spy="storytelling">Storytelling</a>
+      <a href="#mapping" data-spy="mapping">Digital Mapping</a>
+      <a href="#virtual" data-spy="virtual">Virtual Experience</a>
+      <a href="#rules" data-spy="rules">Tata Tertib</a>
+      <a href="#info" data-spy="info">Informasi</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="beranda">
+  <div class="hero__bg" id="heroBg"></div>
+  <div class="hero__shade"></div>
+
+  <div class="explore-bar" role="navigation" aria-label="Akses cepat">
+    <a href="#storytelling"><span>📖</span> STORYTELLING</a>
+    <a href="#mapping"><span>🗺️</span> DIGITAL MAP</a>
+    <a href="#virtual"><span>🥽</span> VIRTUAL TOUR</a>
+  </div>
+
+  <div class="hero__content">
+    <p class="eyebrow">Digital Cave Experience</p>
+    <h1>Discover the Hidden World of <em>Laumehe</em></h1>
+    <p class="hero__desc">Jelajahi ruang-ruang gua, kenali cerita alam dan budaya, serta rasakan pengalaman eksplorasi digital Gua Laumehe.</p>
+    <div class="hero__cta">
+      <a class="btn btn--primary" href="#storytelling">START EXPLORING</a>
+      <a class="btn btn--ghost" href="#virtual">VIRTUAL EXPERIENCE</a>
+    </div>
+    <p class="hero__note" id="heroNote" hidden>Foto latar belum diunggah — menampilkan latar placeholder. Letakkan <code>assets/images/hero.jpg</code>.</p>
+  </div>
+
+  <div class="hero__cards" aria-label="Enam lokasi eksplorasi">
+    <div class="hero__cards-head">
+      <span>6 Lokasi Eksplorasi</span>
+      <div class="arrows">
+        <button id="cardsPrev" aria-label="Kartu sebelumnya">‹</button>
+        <button id="cardsNext" aria-label="Kartu berikutnya">›</button>
+      </div>
+    </div>
+    <div class="cards-track" id="cardsTrack"></div>
+  </div>
+</section>
+
+<!-- ===================== STORYTELLING ===================== -->
+<section class="section" id="storytelling">
+  <div class="wrap">
+    <p class="eyebrow">Fitur 01 — Digital Storytelling</p>
+    <h2 class="display">Every Cave Has a Story</h2>
+    <p class="lead">Enam bab visual untuk mengenal Gua Laumehe. Tiap bab terhubung dengan lokasi pada peta digital.</p>
+
+    <div class="story">
+      <aside class="timeline" aria-label="Timeline bab">
+        <ol id="timeline"></ol>
+      </aside>
+      <div class="chapters" id="chapters"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DIGITAL MAPPING ===================== -->
+<section class="section section--alt" id="mapping">
+  <div class="wrap">
+    <p class="eyebrow">Fitur 02 — Digital Mapping</p>
+    <h2 class="display">Explore the Cave</h2>
+    <p class="lead">Ketuk marker untuk melihat informasi ruang. Gunakan tombol zoom, geser, atau cubit untuk memperbesar peta.</p>
+
+    <div class="mapgrid">
+      <div class="mapbox">
+        <div class="map-tools">
+          <button id="zoomIn" aria-label="Perbesar">＋</button>
+          <button id="zoomOut" aria-label="Perkecil">－</button>
+          <button id="zoomReset" aria-label="Atur ulang peta">⟲</button>
+          <button id="mapFull" aria-label="Layar penuh">⛶</button>
+        </div>
+        <div class="map-viewport" id="mapViewport" tabindex="0" aria-label="Peta interaktif Gua Laumehe">
+          <div class="map-canvas" id="mapCanvas">
+            <img id="mapImg" alt="Peta Gua Laumehe" draggable="false">
+            <div id="markers"></div>
+          </div>
+        </div>
+        <p class="map-status" id="mapStatus"></p>
+      </div>
+
+      <div class="mapside">
+        <div class="panel" id="infoPanel" aria-live="polite"></div>
+        <div class="legend">
+          <h3>Legenda</h3>
+          <ul id="legend"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VIRTUAL EXPERIENCE ===================== -->
+<section class="section" id="virtual">
+  <div class="wrap">
+    <p class="eyebrow">Fitur 03 — Virtual Experience</p>
+    <h2 class="display">Experience Laumehe Virtually</h2>
+    <p class="lead">Lihat gambaran gua sebelum berkunjung. Pindah antarlokasi sesuai urutan titik pada peta.</p>
+
+    <div class="vr">
+      <div class="vr__stage" id="vrStage">
+        <div class="vr__media" id="vrMedia"></div>
+        <span class="vr__badge" id="vrBadge"></span>
+        <div class="vr__overlay">
+          <span class="vr__no" id="vrNo"></span>
+          <h3 id="vrTitle"></h3>
+          <p id="vrCaption"></p>
+        </div>
+        <button class="vr__full" id="vrFull" aria-label="Layar penuh">⛶ Layar Penuh</button>
+      </div>
+
+      <div class="vr__side">
+        <p class="vr__narr" id="vrNarr"></p>
+        <div class="progress">
+          <div class="progress__top"><span>Progres eksplorasi</span><b id="progText">1 / 6</b></div>
+          <div class="progress__bar"><i id="progBar"></i></div>
+          <div class="dots" id="progDots"></div>
+        </div>
+        <div class="vr__nav">
+          <button class="btn btn--ghost" id="vrPrev">‹ Lokasi Sebelumnya</button>
+          <button class="btn btn--primary" id="vrNext">Lokasi Berikutnya ›</button>
+        </div>
+        <div class="vr__links">
+          <button class="link" id="vrStory">📖 Baca Cerita</button>
+          <button class="link" id="vrMap">🗺️ Kembali ke Peta Digital</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="thumbs" id="vrThumbs" aria-label="Pilih lokasi"></div>
+    <p class="note">Versi awal: foto biasa. Viewer panorama 360° dan model 3D akan aktif otomatis ketika aset <code>pano</code> / <code>model</code> ditambahkan pada <code>js/data.js</code>.</p>
+  </div>
+</section>
+
+<!-- ===================== TATA TERTIB ===================== -->
+<section class="section section--alt" id="rules">
+  <div class="wrap">
+    <p class="eyebrow">Keselamatan</p>
+    <h2 class="display">Cave Rules &amp; Visitor Safety</h2>
+    <div class="rules" id="rulesGrid"></div>
+    <blockquote class="pledge" id="rulesMsg"></blockquote>
+    <p class="note" id="rulesDisc"></p>
+  </div>
+</section>
+
+<!-- ===================== INFORMASI ===================== -->
+<section class="section" id="info">
+  <div class="wrap">
+    <div class="hours" id="hours">
+      <div>
+        <p class="eyebrow">Informasi Kunjungan</p>
+        <h2 class="display">Visiting Hours</h2>
+        <p class="hours__time" id="hrTime"></p>
+        <dl class="hours__list">
+          <div><dt>Hari operasional</dt><dd id="hrDays"></dd></div>
+          <div><dt>Lokasi</dt><dd id="hrAddr"></dd></div>
+        </dl>
+        <a class="btn btn--primary" id="hrMaps" target="_blank" rel="noopener">Lihat Lokasi</a>
+      </div>
+      <div class="hours__side">
+        <p id="hrRemind"></p>
+        <p class="note" id="hrDisc"></p>
+      </div>
+    </div>
+
+    <div class="about">
+      <h2 id="abTitle"></h2>
+      <div id="abText"></div>
+      <div class="pillars" id="pillars"></div>
+    </div>
+
+    <h3 class="gallery-title">Galeri</h3>
+    <div class="gallery" id="gallery"></div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div>
+      <a href="#beranda" class="logo">GUA LAUMEHE</a>
+      <p class="muted">Digital Cave Experience</p>
+      <p class="muted" id="ftAddr"></p>
+    </div>
+    <nav aria-label="Navigasi footer">
+      <a href="#storytelling">Storytelling</a>
+      <a href="#mapping">Digital Mapping</a>
+      <a href="#virtual">Virtual Experience</a>
+      <a href="#rules">Tata Tertib</a>
+      <a href="#info">Informasi</a>
+    </nav>
+    <div>
+      <p><b>Jam operasional</b><br>07.00–17.00 WITA</p>
+      <p class="muted">Jelajahi dengan bijak. Lindungi alam, dan tinggalkan gua tanpa sampah.</p>
+    </div>
+  </div>
+  <p class="footer__bar">© <span id="year"></span> GUA LAUMEHE — Digital Cave Experience</p>
+</footer>
+
+<!-- Pelacak progres melayang -->
+<div class="floatprog" id="floatProg" aria-live="polite"></div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Galeri foto">
+  <button class="lb__close" id="lbClose" aria-label="Tutup">✕</button>
+  <button class="lb__nav lb__prev" id="lbPrev" aria-label="Foto sebelumnya">‹</button>
+  <figure>
+    <img id="lbImg" alt="">
+    <figcaption id="lbCap"></figcaption>
+  </figure>
+  <button class="lb__nav lb__next" id="lbNext" aria-label="Foto berikutnya">›</button>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
